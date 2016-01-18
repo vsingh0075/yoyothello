@@ -1,6 +1,7 @@
 package kids.cute.spacethello.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -34,6 +35,12 @@ public class MainActivity extends Activity {
             img.setImageResource(R.drawable.silent);
             sound=0;
         }
+    }
+    public void SinglePlayer(View view)
+    {
+       Intent in=new Intent(this,SinglePlayer.class);
+        startActivity(in);
+
     }
 
 }
