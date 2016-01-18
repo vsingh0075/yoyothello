@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+
 import kids.cute.spacethello.R;
 
 /**
@@ -49,5 +50,9 @@ public class SplashScreenActivity extends Activity {
     protected void onPause() {
         super.onPause();
         finish();
+        /*
+            Full Screen !!
+         */
+
     }
 }
