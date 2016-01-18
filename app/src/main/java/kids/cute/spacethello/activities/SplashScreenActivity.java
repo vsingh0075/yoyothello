@@ -14,6 +14,10 @@ import kids.cute.spacethello.R;
  * Created by vikrant on 1/17/16.
  */
 public class SplashScreenActivity extends Activity {
+
+    private final long SPLASH_DURATION=3000;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
