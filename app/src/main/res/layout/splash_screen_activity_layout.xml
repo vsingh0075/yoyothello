@@ -24,7 +24,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FUCK YOU !!!!!!!"
+            android:text="Loading ......."
+            android:textSize="35dp"
             android:textColor="#ff0000"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
