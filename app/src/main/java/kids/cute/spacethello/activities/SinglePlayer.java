@@ -1,5 +1,6 @@
 package kids.cute.spacethello.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,7 @@ import android.view.WindowManager;
 
 import kids.cute.spacethello.R;
 
-public class SinglePlayer extends AppCompatActivity {
+public class SinglePlayer extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
