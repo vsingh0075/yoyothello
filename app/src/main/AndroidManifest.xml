@@ -25,6 +25,9 @@
             android:name=".activities.SinglePlayer"
             android:label="@string/title_activity_single_player"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.GameActivity"
+            />
     </application>
 
 </manifest>
