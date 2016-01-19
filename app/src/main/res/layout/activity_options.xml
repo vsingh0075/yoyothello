@@ -22,27 +22,37 @@
                 android:layout_gravity="right"
                 android:paddingLeft="70sp"
 
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:weightSum="1">
+                <ToggleButton
+                    android:id="@+id/sunbtn"
+                    android:textOn=""
+                    android:textOff=""
+                    android:layout_width="52dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/sun"
-                    android:onClick="buttonclick"
-                    />
+                    android:background="@drawable/sunselector"
+                    android:onClick="sunclick"
+                    android:checked="false"
+                    android:layout_weight="0.14" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="20sp"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <ToggleButton
+                    android:id="@+id/moonbtn"
+                    android:layout_width="59dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="60sp"
                     android:layout_marginLeft="20sp"
-                    android:onClick="buttonclick"
-                    android:background="@drawable/moon"/>
+                    android:textOn=""
+                    android:textOff=""
+                    android:onClick="moonclick"
+                    android:background="@drawable/moonselector"
+                    android:layout_weight="0.08" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -66,22 +76,30 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
-        >
-        <Button
-            android:layout_marginTop="100sp"
+        android:weightSum="1">
+        <Switch
+
+            android:layout_marginTop="75sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Show legal moves"
+            android:layout_height="40dip"
+            android:text="  SHOW LEGAL MOVES"
             android:textColor="@android:color/white"
-            android:background="@drawable/selector"
+            android:textStyle="bold"
+            android:background="#800000"
+            android:thumb="@drawable/switcher"
             android:id="@+id/legalmoves"
-            />
+            android:checked="true"
+            android:onClick="switcher_legal_moves"
+
+            android:layout_weight="0.15" />
         <Button
             android:layout_marginTop="20sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:text="Reset to default"
-            android:background="@drawable/selector"
+            android:onClick="Resetbtn"
+            android:background="#800000"
+            android:fadingEdge="horizontal"
             android:textColor="@android:color/white"
             android:id="@+id/defaults"
             />
@@ -90,25 +108,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
         <Button
-            android:layout_marginTop="20sp"
+            android:onClick="applyclicked"
+            android:layout_marginTop="38sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
+            android:text="APPLY CHANGES"
             android:layout_weight="1"
             android:textColor="@android:color/white"
             android:background="@drawable/selector"
-            android:id="@+id/ok"
+            android:id="@+id/applybtn"
             />
             <Button
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="38sp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="back"
+                android:text="CANCEL"
                 android:textColor="@android:color/white"
                 android:background="@drawable/selector"
                 android:layout_marginLeft="40dp"
-                android:id="@+id/back"
+                android:id="@+id/cancel"
                 android:onClick="back"
                 />
         </LinearLayout>
