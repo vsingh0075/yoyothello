@@ -14,6 +14,8 @@ import kids.cute.spacethello.R;
  */
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
+    private GreedyAI myBot ;
+
     public final int SUN =1;
     public final int MOON=2;
     private float gotix,gotiy;
@@ -39,6 +41,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         presentGrid[5][4]=SUN;
         CPU=false;
         undo=true;
+        myBot = new GreedyAI();
         handleAndDraw();
     }
 
@@ -57,18 +60,38 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         int i,j;
         i= (int)( Math.ceil((touchX -25)/93.75) );
         j= (int)( Math.ceil((touchY -45)/93.75) );
-        if(CPU == false)
-        {
-            presentGrid[i][j]=SUN;
-            CPU=true;
+        if (presentGrid[i][j]==0) {
+            int a,b;
+            for(a=1;a<=8;a++) {
+                for (b = 1; b <= 8; b++) {
+                    previousGrid[a][b] = presentGrid[a][b];
+                }
+            }
+            if (CPU == false) {
+                presentGrid[i][j] = SUN;
+                CPU = true;
+                playCPU();
+            } else {
+                presentGrid[i][j] = MOON;
+                CPU = false;
+            }
+            undo = true;
+            handleAndDraw();
         }
-        else
-        {
-            presentGrid[i][j]=MOON;
-            CPU=false;
+    }
+
+    private void playCPU() {
+        Pair move;
+        move = myBot.getNextMove(2,presentGrid);
+        updateGridCPU(move.getX(),move.getY());
+    }
+
+    public void updateGridCPU(int i,int j) {
+        if (presentGrid[i][j]==0) {
+            presentGrid[i][j] = MOON;
+            CPU = false;
+            handleAndDraw();
         }
-        undo=true;
-        handleAndDraw();
     }
 
     public void undoAction()
@@ -76,13 +99,23 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         if(undo)
         {
             undo=false;
+            
+            // Restore previous state of game.
+            int i,j;
+            for(i=1;i<=8;i++) {
+                for (j = 1; j <= 8; j++) {
+                    presentGrid[i][j] = previousGrid[i][j];
+                }
+            }
+            CPU = false;
         }
         handleAndDraw();
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if(event.getAction() == MotionEvent.ACTION_DOWN)
+        if(event.getAction() == MotionEvent.ACTION_DOWN && CPU == false)
         {
             final float scaleFactorX= getWidth()/(WIDTH*1.0f);
             final float scaleFactorY= getHeight()/(HEIGHT*1.0f);
@@ -92,16 +125,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             float touchY= event.getY()/scaleFactor;
             if(touchY>45 &&  touchY < 805 && touchX >25 && touchX < 775)
             {
-                updateGrid(touchX,touchY);
+                    updateGrid(touchX,touchY);
             }
             else
             {
                 touchX=event.getX()/scaleFactorX;
                 touchY=event.getY()/scaleFactorY;
                 if(touchX > 325 && touchX < 475 && touchY > 840 && touchY < 890)
-                undoAction();
+                    undoAction();
             }
-            System.out.println("clicked at "+ touchX + " " + touchY);
+            System.out.println("clicked at " + touchX + " " + touchY);
         }
         return super.onTouchEvent(event);
     }
@@ -124,7 +157,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         {
             for(j=1;j<=8;j++)
             {
-                System.out.print(presentGrid[i][j] + " " );
+              //  System.out.print(presentGrid[i][j] + " " );
                 setPosition(i,j);
                 if(presentGrid[i][j] == SUN)
                 {
@@ -135,7 +168,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                     canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.moongoti), gotix, gotiy, null );
                 }
             }
-            System.out.println();
+            //System.out.println();
         }
     }
     public void drawButtons(Canvas canvas)
@@ -157,6 +190,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.undo2), 325, 840, null);
     }
 
+    @Override
     public void draw(Canvas canvas)
     {
         final float scaleFactorX=getWidth()/(WIDTH*1.0f);
