@@ -31,7 +31,7 @@
                     android:layout_width="52dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/sunselector"
-                    android:onClick="sunclick"
+                    android:onClick="sunClick"
                     android:checked="false"
                     android:layout_weight="0.14" />
             </LinearLayout>
@@ -50,7 +50,7 @@
                     android:layout_marginLeft="20sp"
                     android:textOn=""
                     android:textOff=""
-                    android:onClick="moonclick"
+                    android:onClick="moonClick"
                     android:background="@drawable/moonselector"
                     android:layout_weight="0.08" />
             </LinearLayout>
@@ -136,8 +136,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="250sp"
-            android:id="@+id/image"
+            android:id="@+id/image_sound"
             android:onClick="soundbutton"
-            android:src="@drawable/sound"/>
+
+           />
     </LinearLayout>
     </LinearLayout>
