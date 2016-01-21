@@ -17,7 +17,7 @@ import kids.cute.spacethello.R;
 
 public class options extends Activity {
 
-    int check=1;
+
     //get values from shared preferences;set accordingly
     SharedPreferences pref;
     SharedPreferences.Editor editor;
